@@ -24,7 +24,6 @@ target_link_libraries(clambdac clambda)
 if(MSVC)
   # hack to deal with cmake automatically inserting /W3; taken from llvm
   string(REGEX REPLACE " /W[0-4]" "" CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")
-  string(REGEX REPLACE " /W[0-4]" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
 endif()
 
 function(add_options to)
@@ -34,7 +33,9 @@ function(add_options to)
         /W4
         /WX
       PUBLIC
-        /permissive-)
+        /permissive-
+        /wd4201
+        /wd4204)
   else()
     target_compile_options(${to}
       PRIVATE
