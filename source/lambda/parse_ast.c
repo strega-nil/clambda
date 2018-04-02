@@ -31,10 +31,22 @@ static void format_var(struct parse_ast_var const *ast, void *file) {
   fputs(ast->name, file);
 }
 static void format_abs(struct parse_ast_abs const *ast, void *file) {
-  format(file, "(%.%)", string_format, &ast->variable, parse_ast_format, ast->expression);
+  format(
+      file,
+      "(%.%)",
+      string_format,
+      &ast->variable,
+      parse_ast_format,
+      ast->expression);
 }
 static void format_app(struct parse_ast_app const *ast, void *file) {
-  format(file, "% %", parse_ast_format, ast->callee, parse_ast_format, ast->argument);
+  format(
+      file,
+      "% %",
+      parse_ast_format,
+      ast->callee,
+      parse_ast_format,
+      ast->argument);
 }
 
 void parse_ast_format(FILE *f, struct parse_ast const *ast) {
