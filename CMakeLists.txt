@@ -3,7 +3,8 @@ cmake_minimum_required(VERSION 3.6)
 project(clambda VERSION 0.1 LANGUAGES C)
 
 add_library(clambda
-  source/lambda/parse_ast.c)
+  source/lambda/parse_ast.c
+  source/ub/format.c)
 
 if (NOT MSVC)
   target_compile_features(clambda PUBLIC c_std_99)

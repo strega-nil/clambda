@@ -1,5 +1,5 @@
-#ifndef UB_PARSE_AST_H
-#define UB_PARSE_AST_H
+#ifndef LAMBDA_PARSE_AST_H
+#define LAMBDA_PARSE_AST_H
 
 #include <stdio.h>
 
@@ -12,11 +12,11 @@ enum parse_ast_tag {
 struct parse_ast;
 
 struct parse_ast_var {
-  char const *name;
+  char *name;
 };
 
 struct parse_ast_abs {
-  char const *variable;
+  char *variable;
   struct parse_ast *expression;
 };
 
@@ -39,6 +39,8 @@ struct parse_ast parse_ast_make_var(char const *);
 struct parse_ast parse_ast_make_abs(char const *, struct parse_ast);
 struct parse_ast parse_ast_make_app(struct parse_ast, struct parse_ast);
 
+void parse_ast_delete(struct parse_ast);
+
 void parse_ast_match(
     struct parse_ast const *,
     void const *,
@@ -46,7 +48,7 @@ void parse_ast_match(
     void (*)(struct parse_ast_abs *, void *),
     void (*)(struct parse_ast_app *, void *));
 
-void parse_ast_fprint(FILE *, struct parse_ast const *);
+void parse_ast_format(FILE *, struct parse_ast const *);
 void parse_ast_print(struct parse_ast const *);
 
-#endif // UB_PARSE_AST_H
+#endif // LAMBDA_PARSE_AST_H
