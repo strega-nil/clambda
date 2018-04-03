@@ -1,6 +1,6 @@
-#include <lambda/parse_ast.h>
+#include <clambda/parse_ast.h>
 
-#include <ub/format.h>
+#include <ubclib/format.h>
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -31,9 +31,13 @@ static void format_var(struct parse_ast_var const *ast, void *file) {
   fputs(ast->name, file);
 }
 static void format_abs(struct parse_ast_abs const *ast, void *file) {
+  /*
+    note, because it isn't obvious: ast->expression is a pointer to heap 
+    that's why we don't do &ast->expression
+  */
   format(
       file,
-      "(%.%)",
+      "(/%.%)",
       string_format,
       &ast->variable,
       parse_ast_format,

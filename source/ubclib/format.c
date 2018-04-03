@@ -1,7 +1,8 @@
-#include <ub/format.h>
+#include <ubclib/format.h>
 
 #include <stdarg.h>
 #include <stddef.h>
+#include <stdio.h>
 
 typedef void format_t(FILE *, void const *);
 

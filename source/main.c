@@ -1,6 +1,6 @@
-#include <lambda/parse_ast.h>
+#include <clambda/parse_ast.h>
 
-#include <stdio.h>
+#include <ubclib/format.h>
 
 int main() {
   struct parse_ast ast = parse_ast_make_app(
@@ -8,8 +8,10 @@ int main() {
           "x",
           parse_ast_make_app(parse_ast_make_var("x"), parse_ast_make_var("x"))),
       parse_ast_make_var("y"));
-  parse_ast_print(&ast);
-  puts("");
+
+  print("%\n", parse_ast_format, &ast);
+
+  parse_ast_delete(ast);
 
   return 0;
 }

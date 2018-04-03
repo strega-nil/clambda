@@ -3,6 +3,11 @@
 
 #include <stdio.h>
 
+#ifdef __cplusplus
+namespace clambda {
+extern "C" {
+#endif
+
 enum parse_ast_tag {
   PARSE_AST_VAR,
   PARSE_AST_ABS,
@@ -50,5 +55,10 @@ void parse_ast_match(
 
 void parse_ast_format(FILE *, struct parse_ast const *);
 void parse_ast_print(struct parse_ast const *);
+
+#ifdef __cplusplus
+}
+} // clambda
+#endif
 
 #endif // LAMBDA_PARSE_AST_H
